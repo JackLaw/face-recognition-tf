@@ -80,9 +80,18 @@ export default function App() {
         ctx.stroke(region(annotations.rightEyeUpper2, true));
         ctx.stroke(region(annotations.rightEyeLower2, true));
         ctx.stroke(region(annotations.rightEyeLower3, true));
+        ctx.stroke(region(annotations.leftEyeUpper0, true));
+        ctx.stroke(region(annotations.leftEyeLower0, true));
+        ctx.stroke(region(annotations.leftEyeUpper1, true));
+        ctx.stroke(region(annotations.leftEyeLower1, true));
+        ctx.stroke(region(annotations.leftEyeUpper2, true));
+        ctx.stroke(region(annotations.leftEyeLower2, true));
+        ctx.stroke(region(annotations.leftEyeLower3, true));
         ctx.strokeStyle = "#32EfDB";
         ctx.stroke(region(annotations.rightEyebrowUpper, true));
         ctx.stroke(region(annotations.rightEyebrowLower, true));
+        ctx.stroke(region(annotations.leftEyebrowUpper, true));
+        ctx.stroke(region(annotations.leftEyebrowLower, true));
       }
     }
   }, []);
@@ -115,6 +124,7 @@ export default function App() {
         ref={videoRef}
         onSetup={onSetup}
         playsInline
+        hidden
         height={400}
         width={400}
       />
