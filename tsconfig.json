@@ -6,11 +6,16 @@
     "strict": true,
     "esModuleInterop": true,
     "lib": [
-      "dom",
-      "es2015"
+      "es5",
+      "es6",
+      "es7",
+      "es2017",
+      "es2018",
+      "es2019",
+      "dom"
     ],
     "jsx": "react-jsx",
-    "target": "es5",
+    "target": "es6",
     "allowJs": true,
     "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
