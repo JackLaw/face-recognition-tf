@@ -16,14 +16,12 @@ const download = (chunks: Blob[], set: any) => {
   const blob = new Blob(chunks, { type: BLOB_TYPE });
   const url = URL.createObjectURL(blob);
   set(url);
-  console.log(url);
-  return;
-  var reader = new FileReader();
-  reader.onload = function (e) {
-    set(reader.result);
-  };
-  reader.readAsDataURL(blob);
-  return;
+  // var reader = new FileReader();
+  // reader.onload = function (e) {
+  //   set(reader.result);
+  // };
+  // reader.readAsDataURL(blob);
+  // return;
   // return url;
   // const a = document.createElement("a");
   // document.body.appendChild(a);
