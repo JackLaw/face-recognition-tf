@@ -1,9 +1,9 @@
 import { MediaPipeFaceMesh } from "@tensorflow-models/face-landmarks-detection/dist/mediapipe-facemesh";
 import "@tensorflow/tfjs-backend-webgl";
 import React, { useEffect, useRef, useState } from "react";
-import Camera from "./Camera";
 import { annotateFeatures, scaler, setupModel } from "./prediction";
 import "./styles.css";
+import useCamera from "./useCamera";
 
 const IS_MOBILE = MediaRecorder.isTypeSupported("video/mp4");
 const MIME_TYPE = IS_MOBILE
@@ -33,8 +33,20 @@ const download = (chunks: Blob[], set: any) => {
 };
 
 const WIDTH = 800;
+const CONSTRAINTS = {
+  audio: false,
+  video: {
+    facingMode: "user",
+    width: { ideal: 1280 },
+    height: { ideal: 1024 },
+  },
+};
 export default function App() {
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const [cameraEl, state, , videoRef] = useCamera(
+    <video hidden autoPlay />,
+    CONSTRAINTS
+  );
+
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const ctxRef = useRef<CanvasRenderingContext2D>(null);
   const chunksRef = useRef<Blob[]>([]);
@@ -131,7 +143,7 @@ export default function App() {
         cancelAnimationFrame(rafId);
       }
     };
-  }, []);
+  }, [videoRef]);
 
   return (
     <div className="App">
@@ -142,7 +154,9 @@ export default function App() {
       <a href={url} download>
         Link {url ? "v" : ""}
       </a>
-      <Camera ref={videoRef} playsInline hidden />
+      {/* <Camera ref={videoRef} playsInline hidden /> */}
+      {cameraEl}
+      {JSON.stringify(state, null, 2)}
     </div>
   );
 }
